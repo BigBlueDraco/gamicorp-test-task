@@ -11,13 +11,6 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     try {
       const { email, password } = createUserDto;
-      const existUser = await this.findOne(email.toLowerCase());
-      if (existUser) {
-        throw new HttpException(
-          `User with email: ${email.toLowerCase()} already exists`,
-          HttpStatus.CONFLICT,
-        );
-      }
       const createdUser = new this.userModel({
         email: email.toLowerCase(),
         password: password,
@@ -33,7 +26,7 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  async findOne(email: string) {
+  async findOneByEmail(email: string) {
     const user = await this.userModel.findOne({ email: email.toLowerCase() });
     return user;
   }
