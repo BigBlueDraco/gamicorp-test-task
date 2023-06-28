@@ -13,7 +13,6 @@ import { faker } from '@faker-js/faker';
   });
   const redisClient = redisCache.store.getClient();
   const keys: [any] = await redisCache.keys();
-  redisCache.reset();
   if (keys.length >= 1000) return;
   redisClient.on('error', (error) => {
     console.log(error);
