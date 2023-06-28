@@ -9,7 +9,6 @@ export class DataService {
     for (let i = 0; i < 10; i++) {
       Math.floor(Math.random() * 1000) + 1;
       const item: string = await this.cacheService.get(`${i}`);
-      console.log(item);
       result.push(item);
     }
     return result;
